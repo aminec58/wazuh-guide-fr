@@ -1,0 +1,5 @@
+<!--
+  Règles personnalisées : Stormshield SNS
+  Plage d'IDs réservée : 100000-100199
+  Emplacement sur le manager : /var/ossec/etc/rules/100000-stormshield.xml
+-->

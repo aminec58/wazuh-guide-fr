@@ -1,0 +1,5 @@
+<!--
+  Règles personnalisées : Linux / auditd
+  Plage d'IDs réservée : 100400-100599
+  Emplacement sur le manager : /var/ossec/etc/rules/100400-linux-auditd.xml
+-->

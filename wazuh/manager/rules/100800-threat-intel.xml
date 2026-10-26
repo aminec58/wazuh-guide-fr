@@ -1,0 +1,5 @@
+<!--
+  Règles personnalisées : Threat intelligence
+  Plage d'IDs réservée : 100800-100999
+  Emplacement sur le manager : /var/ossec/etc/rules/100800-threat-intel.xml
+-->

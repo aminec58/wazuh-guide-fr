@@ -1,0 +1,4 @@
+<!--
+  Décodeurs Stormshield SNS (décodeur parent + sibling decoders)
+  Emplacement sur le manager : /var/ossec/etc/decoders/stormshield_decoders.xml
+-->

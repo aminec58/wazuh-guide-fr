@@ -1,0 +1,27 @@
+# Secrets : ne jamais versionner
+*.pem
+*.key
+*.crt
+*.csr
+*.env
+.env*
+wazuh-passwords.txt
+wazuh-install-files.tar
+*passwords*
+client.keys
+authd.pass
+
+# Logs bruts non anonymisés
+*.raw.log
+raw/
+
+# Système / éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Exports générés
+*.pdf
+!docs/assets/**/*.pdf

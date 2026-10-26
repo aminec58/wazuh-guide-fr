@@ -1,0 +1,5 @@
+<!--
+  Règles personnalisées : FIM
+  Plage d'IDs réservée : 100600-100799
+  Emplacement sur le manager : /var/ossec/etc/rules/100600-fim.xml
+-->

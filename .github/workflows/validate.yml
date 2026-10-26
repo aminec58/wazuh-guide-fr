@@ -1,0 +1,37 @@
+name: Validation XML
+
+on:
+  push:
+    paths: ['wazuh/**/*.xml', 'wazuh/**/ossec.conf', 'wazuh/**/agent.conf']
+  pull_request:
+
+jobs:
+  xml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Valider règles, décodeurs et configurations
+        run: |
+          # Les fichiers Wazuh ont souvent plusieurs éléments racine :
+          # on les enveloppe dans <root> avant validation.
+          status=0
+          files=$(find wazuh -type f \( -name '*.xml' -o -name 'ossec.conf' -o -name 'agent.conf' \))
+          [ -z "$files" ] && echo "Aucun fichier XML à valider." && exit 0
+          for f in $files; do
+            if { echo '<root>'; cat "$f"; echo '</root>'; } | xmllint --noout - 2>/tmp/err; then
+              echo "OK   $f"
+            else
+              echo "FAIL $f"; cat /tmp/err; status=1
+            fi
+          done
+          exit $status
+
+      - name: Vérifier l'unicité des IDs de règles
+        run: |
+          dups=$(grep -rhoP '<rule\s+id="\K[0-9]+' wazuh/manager/rules 2>/dev/null | sort | uniq -d)
+          if [ -n "$dups" ]; then echo "IDs en double : $dups"; exit 1; fi
+          echo "Aucun ID en double."
